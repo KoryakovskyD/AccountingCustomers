@@ -1,6 +1,7 @@
 package ru.avalon.javapp.devj120.avalontelecom.ui;
 
 import java.io.IOException;
+import java.io.Serializable;
 import java.time.LocalDate;
 import java.util.HashSet;
 import java.util.Set;
@@ -26,7 +27,7 @@ public class ClientListTableModel implements TableModel {
         };
 
     private final Set<TableModelListener> modelListeners = new HashSet<>();
-    
+
 	@Override
 	public int getColumnCount() {
 		return COLUMN_HEADERS.length;

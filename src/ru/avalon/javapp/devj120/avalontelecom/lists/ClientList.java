@@ -51,7 +51,7 @@ public class ClientList {
     /**
      * Prevents instance creation out of the class.
      */
-    private ClientList() throws IOException, ClassNotFoundException {
+    public ClientList() throws IOException, ClassNotFoundException {
         File f = new File(FILE_NAME);
         if (f.exists()) {
             try (ObjectInputStream ois = new ObjectInputStream(new FileInputStream(f))) {
@@ -138,7 +138,7 @@ public class ClientList {
 		return instance;
 	}
 
-    public void save() throws  IOException {
+    public void save() throws IOException {
         try (ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(FILE_NAME))) {
             oos.writeObject(clients);
         }

@@ -23,7 +23,17 @@ import ru.avalon.javapp.devj120.avalontelecom.models.PhoneNumber;
  * Application main window.
  */
 public class MainFrame extends JFrame {
-	private final ClientListTableModel clientsTableModel = new ClientListTableModel();
+	private ClientListTableModel clientsTableModel;
+
+	{
+		try {
+			clientsTableModel = new ClientListTableModel();
+		} catch (Exception e) {
+			System.out.println(e.getMessage());
+			System.exit(1);
+		}
+	}
+
 	private final JTable clientsTable = new JTable();
 	ClientDialog cd = new ClientDialog(this);
 

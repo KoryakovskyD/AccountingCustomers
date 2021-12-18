@@ -1,12 +1,13 @@
 package ru.avalon.javapp.devj120.avalontelecom.models;
 
+import java.io.Serializable;
 import java.util.Objects;
 
 /**
  * Encapsulates phone number, which consists of area code and local number.
  * Both parts of the phone number must consist of digits only. 
  */
-public class PhoneNumber {
+public class PhoneNumber implements Serializable {
 	/**
 	 * Phone number area code.
 	 */

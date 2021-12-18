@@ -4,6 +4,8 @@ import java.awt.BorderLayout;
 import java.awt.FlowLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.KeyEvent;
+import java.util.ArrayList;
+import java.util.Locale;
 
 import javax.swing.AbstractAction;
 import javax.swing.Action;
@@ -18,6 +20,8 @@ import javax.swing.JTextField;
 import javax.swing.KeyStroke;
 
 import ru.avalon.javapp.devj120.avalontelecom.models.ClientInfo;
+import ru.avalon.javapp.devj120.avalontelecom.models.CompanyClientInfo;
+import ru.avalon.javapp.devj120.avalontelecom.models.PersonClientInfo;
 
 /**
  * Dialog window for client attributes entering/editing.
@@ -33,8 +37,7 @@ public class ClientDialog extends JDialog {
 	private JLabel lblBirth;
 	private JLabel lblDirectorName;
 	private JLabel lblContactName;
-	private JTextField otherInfo;
-	
+
 	/**
 	 * Set to {@code true}, when a user closes the dialog with "OK" button. 
 	 * This field value is returned by {@link #showModal} method.
@@ -164,6 +167,7 @@ public class ClientDialog extends JDialog {
 		lblDirectorName.setVisible(false);
 		lblContactName.setVisible(false);
 		birthField.setVisible(true);
+		lblBirth.setVisible(true);
 
 		areaCodeField.setEditable(true);
 		phoneNumField.setEditable(true);
@@ -181,8 +185,10 @@ public class ClientDialog extends JDialog {
 		lblDirectorName.setVisible(true);
 		lblContactName.setVisible(true);
 
-		directorNameField.setText(clientInfo.getDirectorName());
-		contactNameField.setText(clientInfo.getContactName());
+
+		directorNameField.setText(((CompanyClientInfo) clientInfo).getDirectorName());
+		contactNameField.setText(((CompanyClientInfo) clientInfo).getContactName());
+
 		birthField.setVisible(false);
 		lblBirth.setVisible(false);
 
@@ -204,7 +210,7 @@ public class ClientDialog extends JDialog {
 		lblContactName.setVisible(false);
 		lblBirth.setVisible(true);
 
-		birthField.setText(clientInfo.getBirth());
+		birthField.setText(((PersonClientInfo) clientInfo).getBirth());
 
 		areaCodeField.setEditable(false);
 		phoneNumField.setEditable(false);

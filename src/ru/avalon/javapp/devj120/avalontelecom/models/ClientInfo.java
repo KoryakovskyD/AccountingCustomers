@@ -23,12 +23,7 @@ public abstract class ClientInfo implements Serializable {
      * Client address.
      */
     private String address;
-    private String contactName;
-    private String directorName;
 
-
-
-    private String birth;
 
     /**
      * Initializes instance attributes with values from corresponding constructor parameters.
@@ -99,16 +94,4 @@ public abstract class ClientInfo implements Serializable {
     }
 
     public abstract String getOtherInfo();
-
-    public String getContactName() {
-        return contactName;
-    }
-
-    public String getDirectorName() {
-        return directorName;
-    }
-
-    public String getBirth() {
-        return birth;
-    }
 }

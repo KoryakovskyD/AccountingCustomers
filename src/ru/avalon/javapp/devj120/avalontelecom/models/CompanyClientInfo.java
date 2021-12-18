@@ -19,15 +19,13 @@ public class CompanyClientInfo extends ClientInfo {
     public void setDirectorName(String directorName) {
         this.directorName = directorName;
     }
-    
-    public String getDirectorName() {
-        return directorName;
-    }
-        
+
     public String getContactName() {
         return contactName;
     }
-
+    public String getDirectorName() {
+       return directorName;
+    }
 
     @Override
     public String getOtherInfo() {
