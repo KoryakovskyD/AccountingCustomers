@@ -23,22 +23,16 @@ public class ClientList {
 	private static ClientList instance;
 
     static {
-        try {
             instance = new ClientList();
-        } catch (IOException e) {
-            e.printStackTrace();
-        } catch (ClassNotFoundException e) {
-            e.printStackTrace();
-        }
     }
 
-    private static final String FILE_NAME = "clients.dat";
+    public static final String FILE_NAME = "clients.dat";
 
 	/**
 	 * Keeps the list of of clients. Clients are stored in the same order,
 	 * which they have been registered in.
 	 */
-    private List<ClientInfo> clients;
+    private static List<ClientInfo> clients;
     
     /**
      * List of client phone numbers. The list is used by  method to check,
@@ -46,25 +40,12 @@ public class ClientList {
      * This set is updated simultaneously with {@link #clients} list, when
      * clients are  or {@linkplain #remove removed}.
      */
-    private Set <PhoneNumber> numbers;
+    private static Set <PhoneNumber> numbers;
     
     /**
      * Prevents instance creation out of the class.
      */
-    public ClientList() throws IOException, ClassNotFoundException {
-        File f = new File(FILE_NAME);
-        if (f.exists()) {
-            try (ObjectInputStream ois = new ObjectInputStream(new FileInputStream(f))) {
-                clients = (List<ClientInfo>) ois.readObject();
-                numbers = new HashSet<>();
-                for (ClientInfo b : clients) {
-                    numbers.add(b.getPhoneNumber());
-                }
-            }
-        } else {
-            clients = new ArrayList<>();
-            numbers = new HashSet<>();
-        }
+    private ClientList() {
     }
 
 	/**
@@ -141,6 +122,22 @@ public class ClientList {
     public void save() throws IOException {
         try (ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(FILE_NAME))) {
             oos.writeObject(clients);
+        }
+    }
+
+    public static void init() throws ClassNotFoundException, IOException {
+        File f = new File(FILE_NAME);
+        if (f.exists()) {
+            try (ObjectInputStream ois = new ObjectInputStream(new FileInputStream(f))) {
+                clients = (List<ClientInfo>) ois.readObject();
+                numbers = new HashSet<>();
+                for (ClientInfo b : clients) {
+                    numbers.add(b.getPhoneNumber());
+                }
+            }
+        } else {
+            clients = new ArrayList<>();
+            numbers = new HashSet<>();
         }
     }
 }

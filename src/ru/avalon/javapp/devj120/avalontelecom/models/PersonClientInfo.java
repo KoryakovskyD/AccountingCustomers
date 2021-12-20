@@ -1,5 +1,7 @@
 package ru.avalon.javapp.devj120.avalontelecom.models;
 
+import java.time.LocalDate;
+
 public class PersonClientInfo extends ClientInfo {
 
     private String birth;
@@ -18,7 +20,12 @@ public class PersonClientInfo extends ClientInfo {
     }
 
     @Override
-    public String getOtherInfo() {
-        return birth;
+    public String getOtherInfo(){
+        String year = birth.substring(6, 10);
+        System.out.println(year);
+
+        LocalDate currentDate = LocalDate.now();
+        int res = currentDate.getYear() - Integer.parseInt(year);
+        return String.valueOf(res);
     }
 }
