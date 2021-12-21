@@ -32,7 +32,7 @@ public class ClientList {
 	 * Keeps the list of of clients. Clients are stored in the same order,
 	 * which they have been registered in.
 	 */
-    private static List<ClientInfo> clients;
+    private List<ClientInfo> clients;
     
     /**
      * List of client phone numbers. The list is used by  method to check,
@@ -40,7 +40,7 @@ public class ClientList {
      * This set is updated simultaneously with {@link #clients} list, when
      * clients are  or {@linkplain #remove removed}.
      */
-    private static Set <PhoneNumber> numbers;
+    private Set <PhoneNumber> numbers;
     
     /**
      * Prevents instance creation out of the class.
@@ -129,15 +129,15 @@ public class ClientList {
         File f = new File(FILE_NAME);
         if (f.exists()) {
             try (ObjectInputStream ois = new ObjectInputStream(new FileInputStream(f))) {
-                clients = (List<ClientInfo>) ois.readObject();
-                numbers = new HashSet<>();
-                for (ClientInfo b : clients) {
-                    numbers.add(b.getPhoneNumber());
+                getInstance().clients = (List<ClientInfo>) ois.readObject();
+                getInstance().numbers = new HashSet<>();
+                for (ClientInfo b : getInstance().clients) {
+                    getInstance().numbers.add(b.getPhoneNumber());
                 }
             }
         } else {
-            clients = new ArrayList<>();
-            numbers = new HashSet<>();
+            getInstance().clients = new ArrayList<>();
+            getInstance().numbers = new HashSet<>();
         }
     }
 }
